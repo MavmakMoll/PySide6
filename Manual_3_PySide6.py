@@ -3,11 +3,12 @@ import sys
 from datetime import datetime
 
 from PySide6.QtWidgets import (
-    QApplication,
-    QWidget,
-    QLabel,
-    QPushButton,
-    QVBoxLayout
+    QApplication, # Создаёт само GUI-приложение.
+    QWidget, # Создаёт окно.
+    QLabel, # Добавление текста
+    QPushButton, # Кнопка с текстом внутри
+    QVBoxLayout, # QV(vertical) ... Она растягивается на всю длину кнопку
+    QHBoxLayout # QH(horizontal)
 )
 
 class Panel:
@@ -23,6 +24,7 @@ class Panel:
         self.button_3 = QPushButton("Хай", self.window) # Кнопка с текстом внутри
         self.button_4 = QPushButton("Очистить", self.window) # Кнопка с текстом внутри
 
+        # построение окна
         layout = QVBoxLayout()
 
         layout.addWidget(self.label)
@@ -33,6 +35,7 @@ class Panel:
 
         self.window.setLayout(layout) # Передаём Layout окну
 
+        # Соединяет нажатие кнопки с функцией
         self.button_1.clicked.connect(self.pr)
         self.button_2.clicked.connect(self.zdar)
         self.button_3.clicked.connect(self.hi)
@@ -40,7 +43,7 @@ class Panel:
 
 
 
-
+    # функции при нажатии на кнопку
     def pr(self):
         self.label.setText("Привет")
     def zdar(self):
@@ -52,6 +55,6 @@ class Panel:
 
 
 app = QApplication(sys.argv) # Создаёт само GUI-приложение.
-prik = Panel()
 prik.window.show() # Показывает окно.
+prik = Panel() # фыв
 app.exec() # запускает цикл обработки событий.  То есть программа после этого ждёт: нажатия кнопок; движения мыши; закрытия окна; нажатий клавиатуры и т. д.
